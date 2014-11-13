@@ -1,0 +1,6 @@
+nuget-packages/
+[bB]in/
+[oO]bj/
+
+*.suo
+*.user
