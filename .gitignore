@@ -1,0 +1,6 @@
+build-stage/
+bin/
+out/
+
+e5r-install.cmd
+error.txt

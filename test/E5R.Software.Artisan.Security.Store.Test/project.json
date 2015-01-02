@@ -1,0 +1,15 @@
+{
+    "compilationOptions": {
+        "warningsAsErrors": "true"
+    },
+    "dependencies": {
+        "E5R.Software.Artisan.Security.Store": "",
+        "xunit.runner.kre": "1.0.0-*"
+    },
+    "commands": {
+        "test": "xunit.runner.kre"
+    },
+    "frameworks": {
+        "aspnet50": { }
+    }
+}

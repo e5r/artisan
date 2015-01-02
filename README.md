@@ -1,5 +1,5 @@
-E5R Software Artisan
-====================
+E5R Artisan of Software
+=======================
 
 O time de desenvolvimento E5R (_E5R Development Team_) acredita que o termo _Fábrica de Software_ não se adequa bem a realidade no dia-a-dia de desenvolvimento de softwares.
 

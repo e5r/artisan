@@ -1,0 +1,18 @@
+{
+    "description": "E5R Artisan of Software, repository Layer",
+    "version": "0.1.0-*",
+    "authors": [
+        "E5R Development Team"
+    ],
+    "compilationOptions": {
+        "warningsAsErrors": true
+    },
+    "packExclude": [
+
+    ],
+    "dependencies": {
+    },
+    "frameworks": {
+        "aspnet50": {}
+    }
+}
