@@ -1,6 +1,6 @@
 using System;
 
-namespace E5R.Software.Artisan.Securitty.Store
+namespace E5R.Software.Artisan.Security.Store
 {
     public class Constants
     {

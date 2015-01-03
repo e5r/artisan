@@ -39,7 +39,7 @@ default ASSEMBLYINFO_FILES='${Files.Include(SRC+"/**/AssemblyInfo.cs")}'
 #compile-packages target='compile'
     @{
         foreach(var info in Files.Include(SRC+"/**/project.json")){
-            var configuration = "debug";
+            var configuration = "release";
             var projectFolder = Path.GetDirectoryName(info);
             var projectName=Path.GetFileName(projectFolder);
             var projectBin=Path.Combine(projectFolder, "bin", configuration);
@@ -149,5 +149,39 @@ default ASSEMBLYINFO_FILES='${Files.Include(SRC+"/**/AssemblyInfo.cs")}'
 
 #pack-packages target='package'
     @{
-        Log.Warn("Package workflow not implemented!");
+        foreach(var projectFile in Files.Include(SRC+"/**/project.json")){
+            var serializer = new JavaScriptSerializer();
+            var projectText = File.ReadAllText(projectFile);
+            var project = (Dictionary<string, object>)serializer.DeserializeObject(projectText);
+
+            if (project.Keys.Contains("webroot"))
+            {
+                var projectFolder = Path.GetDirectoryName(projectFile);
+                var projectName = Path.GetFileName(projectFolder);
+
+                var program = "kpm";
+                var commandLine = "pack "
+                    + "--overwrite "
+                    + "--no-source "
+                    + "--out " + Path.Combine(ARTIFACT_DIR, "pack", projectName);
+                if(!IsMono){
+                    program = "cmd";
+                    commandLine = "/C kpm " + commandLine;
+                }
+
+                var processStartInfo = new ProcessStartInfo {
+                    UseShellExecute = false,
+                    WorkingDirectory = projectFolder,
+                    FileName = program,
+                    Arguments = commandLine
+                };
+
+                var process = Process.Start(processStartInfo);
+                process.WaitForExit();
+                if (process.ExitCode != 0)
+                {
+                    throw new Exception(string.Format("Exit code {0} from {1}", process.ExitCode, program));
+                }
+            }
+        }
     }
